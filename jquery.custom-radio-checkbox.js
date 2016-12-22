@@ -5,6 +5,7 @@
  */
 /*
  * UpDate  On 20161222  By haoxj@xinfushe.com
+ * newGitAdress (https://github.com/mrhaoxiaojun/custom-radio-checkbox)
  */
 (function($) {
     $.fn.customRadioCheckbox = function(options) {
