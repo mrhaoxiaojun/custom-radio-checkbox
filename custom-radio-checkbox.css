@@ -19,5 +19,8 @@
 .checkbox { background-position: -16px 0 }
 .checkbox-checked { background-position: -16px -16px }
 
+/* disabled */
+.checkbox-disabled { background-position:-32px 0 }
+
 /* hide input from view but still visible (ie & opera support) */
 .rc-hidden { position: absolute; left: -999em }

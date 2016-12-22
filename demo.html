@@ -8,24 +8,64 @@
 </head>
 
 <body>
-    <p>
-        <label for="yes">
-            <input type="radio" name="radioGroup1" id="yes" value="Yes" checked="" />
-           Yes
-        </label>
-        <label for="no">
-            <input type="radio" name="radioGroup1" id="no" value="No" />No
-        </label>
-    </p>
-    <p>
-        <label for="checkbox1">
-            <input type="checkbox" name="Checkbox" id="checkbox1" value="1" />Checkbox 1
-        </label>
-        <label for="checkbox2">
-            <input type="checkbox" name="Checkbox" id="checkbox2" value="2" />Checkbox 2
-        </label>
-    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <input type="checkbox">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" disabled class="aa">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox">
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
 </body>
 <script src="jQuery v1.11.3.min.js"></script>
 <script src="jquery.custom-radio-checkbox.js"></script>
+<script>
+$("body").on("click", 'thead th i', function() {
+    var flagVal = $(this).prev().prop("checked"),
+        listItem = $(this).parents("table").find("tbody tr"),
+        i = 0;
+    for (; i < listItem.length; i++) {
+        if (!listItem.eq(i).find("td:eq(0) input").prop("disabled")) {
+            listItem.eq(i).find("td:eq(0) input").prop("checked", flagVal);
+            if (flagVal) {
+                listItem.eq(i).find("td:eq(0) i").addClass("checkbox-checked");
+            } else {
+                listItem.eq(i).find("td:eq(0) i").removeClass("checkbox-checked");
+            }
+        }
+    }
+})
+$("body").on("click", 'tbody tr td i', function() {
+    var flagVal = $(this).prev().prop("checked");
+    if (!flagVal) {
+        $(this).parents("table").find("thead tr").find("th:eq(0) input").prop("checked", flagVal);
+        $(this).parents("table").find("thead tr").find("th:eq(0) i").removeClass("checkbox-checked");
+    }
+})
+</script>
+
 </html>
