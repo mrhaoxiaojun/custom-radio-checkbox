@@ -7,6 +7,7 @@
  * UpDate  On 20161222  By haoxj@xinfushe.com
  * newGitAdress (https://github.com/mrhaoxiaojun/custom-radio-checkbox)
  */
+var  rdsCache;
 (function($) {
     $.fn.customRadioCheckbox = function(options) {
         // don't act on absent elements, can't chain anyway
@@ -64,7 +65,7 @@
                 .addClass(hiddenInputClass);
 
             // storage for each radio group to optimize next lookup
-            var rdsCache = {};
+            window.rdsCache = $.extend(rdsCache,{});
 
             // total radios
             var rdsLength = rds.length;
@@ -83,6 +84,13 @@
                     rd = rds[rdsLength];
                     if (rd.checked) {
                         (rdsCache[rd.name] = {}).checked = $(rd.nextSibling);
+                    }
+                     if ($(rd).prop("disabled")) {
+                        if ($(rd).prop("checked")) {
+                            $(rd.nextSibling).addClass('radio-checked-disabled')
+                        }else{
+                            $(rd.nextSibling).addClass('radio-disabled')
+                        }
                     }
                 }
 
@@ -127,8 +135,12 @@
                 while (chsLength--) {
                     ch = chs[chsLength];
                     if ($(ch).prop("disabled")) {
-                        $(ch.nextSibling).addClass('checkbox-disabled')
-                    }
+                        if ($(ch).prop("checked")) {
+                            $(ch.nextSibling).addClass('checkbox-checked-disabled')
+                        }else{
+                            $(ch.nextSibling).addClass('checkbox-disabled')
+                        }
+                    } 
                 }
                 // bind checkbox change event
                 chs.bind('change.crc', function(e, force) {
