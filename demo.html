@@ -12,7 +12,7 @@
         <thead>
             <tr>
                 <th>
-                    <input type="checkbox">
+                    <input type="checkbox" >
                 </th>
             </tr>
         </thead>
@@ -29,7 +29,7 @@
             </tr>
             <tr>
                 <td>
-                    <input type="checkbox">
+                    <input type="checkbox" checked disabled>
                 </td>
             </tr>
             <tr>
@@ -37,13 +37,21 @@
                     <input type="checkbox">
                 </td>
             </tr>
-            
         </tbody>
     </table>
+    <div class="abc">
+    	<input type="radio" name="bb">
+    	<input type="radio" name="bb"  disabled>
+    	<input type="radio" name="bb"  checked disabled>
+    </div>
 </body>
 <script src="jQuery v1.11.3.min.js"></script>
 <script src="jquery.custom-radio-checkbox.js"></script>
 <script>
+setTimeout(function () {
+	$(".abc").append('<input type="radio" name="bb" />');
+	 $('body').customRadioCheckbox();
+})
 $("body").on("click", 'thead th i', function() {
     var flagVal = $(this).prev().prop("checked"),
         listItem = $(this).parents("table").find("tbody tr"),
